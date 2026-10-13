@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мастерская эмблем Lineage II — значок клана и альянса</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+
+<style>
+:root{
+  --bg:#2A2520;
+  --bg-deep:#191715;
+  --panel:#2F3D29;
+  --panel-2:#384732;
+  --ink:#F4ECD8;
+  --ink-dim:rgba(244,236,216,.62);
+  --ink-faint:rgba(244,236,216,.38);
+  --gold:#D9A441;
+  --gold-hi:#EEC25E;
+  --gold-dim:rgba(217,164,65,.35);
+  --line:rgba(244,236,216,.14);
+  --serif:'PT Serif',Georgia,'Times New Roman',serif;
+  --display:'Cormorant SC','PT Serif',Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:16px;
+  line-height:1.6;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+/* paper grain over everything */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:60;
+  opacity:.055;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+::selection{background:var(--gold);color:var(--bg-deep)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+
+/* ---------- header ---------- */
+header{
+  padding:26px 0;
+  border-bottom:1px solid var(--line);
+}
+header .wrap{display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.wordmark{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:22px;
+  letter-spacing:.14em;
+  color:var(--gold);
+  text-transform:uppercase;
+}
+.wordmark small{color:var(--ink-faint);font-size:12px;letter-spacing:.22em;display:block;margin-top:2px}
+header nav{display:flex;gap:26px;font-size:14px}
+header nav a{color:var(--ink-dim);text-decoration:none;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+header nav a:hover{color:var(--gold-hi);border-color:var(--gold-dim)}
+header nav a.nav-zenith{
+  font-family:var(--display);
+  font-weight:700;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--bg-deep);
+  background:var(--gold);
+  border:1px solid var(--gold);
+  padding:6px 16px 4px;
+  margin-left:8px;
+  transition:background .2s, color .2s, box-shadow .2s;
+  box-shadow:0 0 0 rgba(217,164,65,0);
+}
+header nav a.nav-zenith:hover{
+  background:var(--gold-hi);
+  color:var(--bg-deep);
+  border-color:var(--gold-hi);
+  box-shadow:0 0 22px rgba(217,164,65,.35);
+}
+
+/* ---------- hero ---------- */
+.hero{
+  background:var(--bg-deep);
+  padding:84px 0 96px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(1100px 480px at 78% -10%, rgba(217,164,65,.13), transparent 62%),
+    radial-gradient(700px 380px at 8% 110%, rgba(56,71,50,.55), transparent 70%);
+}
+.hero .wrap{position:relative}
+.hero h1{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:clamp(40px,6.4vw,76px);
+  line-height:1.02;
+  letter-spacing:.02em;
+  max-width:14ch;
+}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p.lead{
+  margin-top:22px;
+  max-width:56ch;
+  color:var(--ink-dim);
+  font-size:18px;
+}
+.hero .badges{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.badge{
+  font-family:var(--display);
+  font-size:14px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--ink);
+  border:1px solid var(--line);
+  padding:9px 16px 7px;
+  background:rgba(244,236,216,.03);
+}
+.badge b{color:var(--gold);font-weight:600}
+
+/* torn paper divider */
+.torn{display:block;width:100%;height:44px;margin-bottom:-1px}
+.torn.flip{transform:scaleX(-1)}
+
+/* ---------- tool ---------- */
+.tool{padding:72px 0 84px;background:var(--bg)}
+.tool-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);
+  gap:56px;
+  align-items:start;
+}
+@media (max-width:920px){.tool-grid{grid-template-columns:1fr;gap:44px}}
+.section-label{
+  font-family:var(--display);
+  font-size:13px;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:18px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.section-label::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* dropzone */
+.dropzone{
+  border:1px dashed var(--gold-dim);
+  background:rgba(217,164,65,.04);
+  min-height:360px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  text-align:center;
+  padding:44px 28px;
+  cursor:pointer;
+  transition:border-color .2s, background .2s;
+}
+.dropzone:hover,.dropzone.over{border-color:var(--gold);background:rgba(217,164,65,.08)}
+.dropzone svg{width:52px;height:52px;stroke:var(--gold);opacity:.9}
+.dropzone .big{font-family:var(--display);font-size:22px;letter-spacing:.06em}
+.dropzone .small{color:var(--ink-dim);font-size:14px;max-width:38ch}
+.dropzone .or{color:var(--ink-faint);font-size:13px;letter-spacing:.18em;text-transform:uppercase}
+.btn-file{
+  font-family:var(--display);
+  font-size:15px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--bg-deep);
+  background:var(--gold);
+  border:none;
+  padding:12px 26px 10px;
+  cursor:pointer;
+  transition:background .2s;
+}
+.btn-file:hover{background:var(--gold-hi)}
+
+/* editor stage */
+.editor{display:none}
+.editor.on{display:block}
+.stage{
+  --ar:16/12;
+  position:relative;
+  width:100%;
+  aspect-ratio:var(--ar);
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:
+    repeating-conic-gradient(rgba(244,236,216,.07) 0% 25%, transparent 0% 50%) 0 0/18px 18px,
+    var(--bg-deep);
+  cursor:grab;
+  touch-action:none;
+  user-select:none;
+}
+.stage.dragging{cursor:grabbing}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.split-line{
+  display:none;
+  position:absolute;
+  top:0;bottom:0;
+  left:33.3333%;
+  width:1px;
+  background:rgba(238,194,94,.75);
+  box-shadow:0 0 0 1px rgba(25,23,21,.55);
+  pointer-events:none;
+}
+.stage.combo .split-line{display:block}
+.split-tag{
+  position:absolute;
+  top:8px;
+  font-family:var(--display);
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--gold-hi);
+  background:rgba(25,23,21,.72);
+  padding:3px 8px 2px;
+  pointer-events:none;
+}
+.split-tag.ally{left:8px}
+.split-tag.clan{left:calc(33.3333% + 8px)}
+.stage:not(.combo) .split-tag{display:none}
+.stage-hint{
+  margin-top:12px;
+  color:var(--ink-faint);
+  font-size:13.5px;
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.zoom-row{
+  margin-top:20px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+.zoom-row label{font-family:var(--display);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim);white-space:nowrap}
+input[type=range]{
+  -webkit-appearance:none;
+  appearance:none;
+  flex:1;
+  height:2px;
+  background:var(--line);
+  outline:none;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  width:18px;height:18px;
+  background:var(--gold);
+  border:3px solid var(--bg);
+  box-shadow:0 0 0 1px var(--gold-dim);
+  border-radius:50%;
+  cursor:pointer;
+}
+input[type=range]::-moz-range-thumb{
+  width:12px;height:12px;
+  background:var(--gold);
+  border:3px solid var(--bg);
+  box-shadow:0 0 0 1px var(--gold-dim);
+  border-radius:50%;
+  cursor:pointer;
+}
+.btn-ghost{
+  font-family:var(--display);
+  font-size:13px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--ink);
+  background:transparent;
+  border:1px solid var(--line);
+  padding:9px 18px 7px;
+  cursor:pointer;
+  transition:border-color .2s,color .2s;
+  white-space:nowrap;
+}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold-hi)}
+.editor-actions{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+
+/* ---------- right column: mode + preview + download ---------- */
+.mode-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:34px}
+.mode-card{
+  border:1px solid var(--line);
+  padding:16px 16px 14px;
+  cursor:pointer;
+  transition:border-color .2s, background .2s;
+  background:rgba(244,236,216,.02);
+}
+.mode-card:hover{border-color:var(--gold-dim)}
+.mode-card.active{border-color:var(--gold);background:rgba(217,164,65,.07)}
+.mode-card .t{font-family:var(--display);font-size:16px;letter-spacing:.08em;display:block}
+.mode-card.active .t{color:var(--gold-hi)}
+.mode-card .d{font-size:12.5px;color:var(--ink-dim);margin-top:4px;display:block;line-height:1.45}
+.mode-card input{display:none}
+
+.preview-block{border-top:1px solid var(--line);padding-top:20px;margin-bottom:28px}
+.preview-block .plabel{
+  font-family:var(--display);font-size:12px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--ink-dim);margin-bottom:14px;display:block;
+}
+.ingame{
+  background:#141210;
+  border:1px solid var(--line);
+  padding:22px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+  min-height:76px;
+}
+.ingame .nametag{
+  display:flex;align-items:center;gap:0;
+  background:rgba(20,18,16,.35);
+}
+.ingame canvas{image-rendering:pixelated;display:block}
+.ingame .nick{
+  font-family:Verdana,Geneva,sans-serif;
+  font-size:15px;
+  color:#EDE6D2;
+  text-shadow:1px 1px 0 #000, -1px 1px 0 #000;
+  margin-left:7px;
+  border-bottom:1px dashed transparent;
+  outline:none;
+  min-width:40px;
+}
+.ingame .nick:focus{border-bottom-color:var(--gold-dim)}
+.truesize{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap}
+.ts-item{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.ts-item span{font-size:12px;color:var(--ink-faint);letter-spacing:.06em}
+.ts-item canvas{
+  image-rendering:pixelated;
+  display:block;
+  outline:1px solid var(--gold-dim);
+  outline-offset:2px;
+  background:#141210;
+}
+.zoomprev canvas{
+  image-rendering:pixelated;
+  display:block;
+  border:1px solid var(--line);
+  background:#141210;
+  max-width:100%;
+}
+.zoomprev .row{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.empty-note{
+  color:var(--ink-faint);
+  font-size:14px;
+  border:1px dashed var(--line);
+  padding:26px 22px;
+  line-height:1.7;
+}
+.download-area{margin-top:6px}
+.btn-main{
+  width:100%;
+  font-family:var(--display);
+  font-size:17px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--bg-deep);
+  background:var(--gold);
+  border:none;
+  padding:17px 20px 14px;
+  cursor:pointer;
+  transition:background .2s, transform .05s;
+}
+.btn-main:hover{background:var(--gold-hi)}
+.btn-main:active{transform:translateY(1px)}
+.btn-main:disabled{background:rgba(244,236,216,.14);color:var(--ink-faint);cursor:not-allowed}
+.dl-status{margin-top:12px;font-size:13px;color:var(--ink-dim);min-height:20px}
+.dl-status b{color:var(--gold-hi);font-weight:600}
+
+/* ---------- install guide ---------- */
+.guide{background:var(--bg-deep);padding:76px 0 84px}
+.guide h2, .specs h2{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:clamp(28px,3.6vw,44px);
+  letter-spacing:.03em;
+  margin-bottom:14px;
+}
+.guide .sub{color:var(--ink-dim);max-width:60ch;margin-bottom:44px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+@media (max-width:920px){.steps{grid-template-columns:1fr}}
+.step{padding:30px 28px 34px;border-bottom:1px solid var(--line)}
+.step + .step{border-left:1px solid var(--line)}
+@media (max-width:920px){.step + .step{border-left:none}}
+.step .num{
+  font-family:var(--display);
+  font-size:15px;
+  color:var(--gold);
+  letter-spacing:.3em;
+  display:block;
+  margin-bottom:14px;
+}
+.step h3{font-family:var(--display);font-size:20px;letter-spacing:.06em;font-weight:600;margin-bottom:10px}
+.step p{color:var(--ink-dim);font-size:14.5px}
+.step code{
+  font-family:'Courier New',monospace;
+  font-size:13px;
+  color:var(--gold-hi);
+  background:rgba(217,164,65,.08);
+  padding:1px 6px;
+}
+
+/* ---------- specs ---------- */
+.specs{background:var(--bg);padding:76px 0 90px}
+.specs table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:34px;
+  font-size:15px;
+}
+.specs th,.specs td{
+  text-align:left;
+  padding:15px 18px;
+  border-bottom:1px solid var(--line);
+  vertical-align:top;
+}
+.specs th{
+  font-family:var(--display);
+  font-size:13px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:600;
+  border-bottom:1px solid var(--gold-dim);
+}
+.specs td:first-child{color:var(--ink);font-weight:700;white-space:nowrap}
+.specs td{color:var(--ink-dim)}
+.tips{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:26px}
+@media (max-width:920px){.tips{grid-template-columns:1fr}}
+.tip{border-left:2px solid var(--gold);padding:6px 0 6px 20px}
+.tip b{display:block;font-family:var(--display);letter-spacing:.08em;font-size:16px;margin-bottom:6px;color:var(--gold-hi);font-weight:600}
+.tip p{color:var(--ink-dim);font-size:14.5px}
+
+footer{
+  border-top:1px solid var(--line);
+  padding:30px 0 40px;
+  color:var(--ink-faint);
+  font-size:13px;
+}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:34px;
+  transform:translateX(-50%) translateY(20px);
+  background:var(--bg-deep);
+  border:1px solid var(--gold-dim);
+  color:var(--ink);
+  padding:13px 22px;
+  font-size:14px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s, transform .25s;
+  z-index:70;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+input[type=file]{display:none}
+
+:root{
+  --bg:#2A2520;
+  --bg-deep:#191715;
+  --panel:#2F3D29;
+  --panel-2:#384732;
+  --ink:#F4ECD8;
+  --ink-dim:rgba(244,236,216,.62);
+  --ink-faint:rgba(244,236,216,.38);
+  --gold:#D9A441;
+  --gold-hi:#EEC25E;
+  --gold-dim:rgba(217,164,65,.35);
+  --line:rgba(244,236,216,.14);
+  --serif:'PT Serif',Georgia,'Times New Roman',serif;
+  --display:'Cormorant SC','PT Serif',Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:16px;
+  line-height:1.6;
+  min-height:100vh;
+  overflow-x:hidden;
+  display:flex;
+  flex-direction:column;
+}
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:60;
+  opacity:.055;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+::selection{background:var(--gold);color:var(--bg-deep)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+
+header{
+  padding:26px 0;
+  border-bottom:1px solid var(--line);
+}
+header .wrap{display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.wordmark{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:22px;
+  letter-spacing:.14em;
+  color:var(--gold);
+  text-transform:uppercase;
+  text-decoration:none;
+}
+.wordmark small{color:var(--ink-faint);font-size:12px;letter-spacing:.22em;display:block;margin-top:2px}
+header nav{display:flex;gap:26px;font-size:14px;align-items:baseline}
+header nav a{color:var(--ink-dim);text-decoration:none;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+header nav a:hover{color:var(--gold-hi);border-color:var(--gold-dim)}
+header nav a.nav-zenith{
+  font-family:var(--display);
+  font-weight:700;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--bg-deep);
+  background:var(--gold);
+  border:1px solid var(--gold);
+  padding:6px 16px 4px;
+  margin-left:8px;
+  box-shadow:0 0 22px rgba(217,164,65,.35);
+}
+
+/* ---------- hero ---------- */
+.z-hero{
+  background:var(--bg-deep);
+  padding:96px 0 104px;
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+}
+.z-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(900px 420px at 50% -12%, rgba(217,164,65,.16), transparent 62%),
+    radial-gradient(760px 420px at 12% 112%, rgba(56,71,50,.5), transparent 70%),
+    radial-gradient(760px 420px at 88% 112%, rgba(56,71,50,.5), transparent 70%);
+}
+.z-hero .wrap{position:relative}
+.z-crest{
+  width:104px;
+  height:auto;
+  margin:0 auto 30px;
+  display:block;
+  filter:drop-shadow(0 0 26px rgba(217,164,65,.3));
+}
+.z-hero h1{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:clamp(56px,10vw,124px);
+  line-height:.95;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink);
+  text-indent:.14em; /* optical centering with tracking */
+}
+.z-hero h1 em{font-style:normal;color:var(--gold)}
+.z-sub{
+  margin-top:26px;
+  font-family:var(--display);
+  font-size:clamp(17px,2.2vw,24px);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--ink-dim);
+}
+.z-sub b{color:var(--gold-hi);font-weight:600}
+.z-rule{
+  width:120px;height:1px;
+  background:var(--gold-dim);
+  margin:38px auto 0;
+  position:relative;
+}
+.z-rule::after{
+  content:"";
+  position:absolute;
+  left:50%;top:50%;
+  width:7px;height:7px;
+  background:var(--gold);
+  transform:translate(-50%,-50%) rotate(45deg);
+}
+
+.torn{display:block;width:100%;height:44px;margin-bottom:-1px}
+.torn.flip{transform:scaleX(-1)}
+
+/* ---------- about ---------- */
+.z-about{padding:76px 0 60px;background:var(--bg)}
+.z-about-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:56px;
+  align-items:start;
+}
+@media (max-width:920px){.z-about-grid{grid-template-columns:1fr;gap:40px}}
+.section-label{
+  font-family:var(--display);
+  font-size:13px;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:18px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.section-label::after{content:"";flex:1;height:1px;background:var(--line)}
+.z-about h2{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:clamp(28px,3.6vw,42px);
+  letter-spacing:.03em;
+  margin-bottom:18px;
+  line-height:1.15;
+}
+.z-about p{color:var(--ink-dim);font-size:17px;margin-bottom:16px}
+.z-about p b{color:var(--ink)}
+.z-facts{border-top:1px solid var(--line)}
+.z-facts .row{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:18px 4px;
+  border-bottom:1px solid var(--line);
+}
+.z-facts .k{
+  font-family:var(--display);
+  font-size:13px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  padding-top:3px;
+}
+.z-facts .v{font-size:17px;color:var(--ink);text-align:right}
+.z-facts .v.gold{color:var(--gold-hi)}
+
+/* ---------- join ---------- */
+.z-join{background:var(--bg-deep);padding:76px 0 88px;text-align:center}
+.z-join h2{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:clamp(30px,4vw,48px);
+  letter-spacing:.03em;
+  margin-bottom:18px;
+}
+.z-join .lead{color:var(--ink-dim);max-width:52ch;margin:0 auto 46px;font-size:17px}
+.z-leader{
+  display:inline-block;
+  border:1px solid var(--gold-dim);
+  background:rgba(217,164,65,.05);
+  padding:34px 58px 30px;
+  position:relative;
+}
+.z-leader .lbl{
+  font-family:var(--display);
+  font-size:12px;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  display:block;
+  margin-bottom:12px;
+}
+.z-leader .nick{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:clamp(40px,6vw,64px);
+  letter-spacing:.12em;
+  color:var(--gold);
+  line-height:1;
+  display:block;
+}
+.z-leader .how{
+  display:block;
+  margin-top:16px;
+  color:var(--ink-dim);
+  font-size:15px;
+}
+.z-leader .how code{
+  font-family:'Courier New',monospace;
+  font-size:14px;
+  color:var(--gold-hi);
+  background:rgba(217,164,65,.08);
+  padding:2px 8px;
+}
+.z-join .note{
+  margin-top:34px;
+  color:var(--ink-faint);
+  font-size:14px;
+}
+
+footer{
+  border-top:1px solid var(--line);
+  padding:30px 0 40px;
+  color:var(--ink-faint);
+  font-size:13px;
+  margin-top:auto;
+}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer a{color:var(--ink-dim);text-decoration:none;border-bottom:1px solid var(--gold-dim)}
+footer a:hover{color:var(--gold-hi)}
+
+/* ---------- single-file router ---------- */
+.page[hidden]{display:none}
+</style>
+</head>
+<body>
+
+<div class="page" id="page-main">
+
+
+<header>
+  <div class="wrap">
+    <div class="wordmark">L2 Crest Atelier<small>Lineage II emblem workshop</small></div>
+    <nav>
+      <a href="#tool">Мастерская</a>
+      <a href="#install">Установка в игре</a>
+      <a href="#specs">Требования</a>
+      <a href="#zenith" class="nav-zenith">Zenith</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Эмблема вашего клана, <em>выкованная</em> до пикселя</h1>
+    <p class="lead">Загрузите любое изображение — сервис кадрирует его, сожмёт до игрового размера и сохранит в строгом формате BMP 8 бит / 256 цветов, который принимает клиент Lineage II. Значок клана 16×12, значок альянса 8×12 — отдельными файлами, готовыми к установке.</p>
+    <div class="badges">
+      <span class="badge">Клан <b>16×12</b></span>
+      <span class="badge">Альянс <b>8×12</b></span>
+      <span class="badge"><b>BMP</b> 8 бит · 256 цветов</span>
+      <span class="badge">Без установки программ</span>
+    </div>
+  </div>
+</section>
+
+<svg class="torn" viewBox="0 0 1200 44" preserveAspectRatio="none" aria-hidden="true">
+  <path fill="#2A2520" d="M0,44 L0,26 L37,31 L74,18 L118,29 L163,14 L205,27 L249,20 L291,32 L338,16 L381,28 L424,12 L470,26 L512,19 L558,31 L601,15 L645,27 L690,21 L733,33 L778,17 L822,29 L866,13 L910,25 L954,20 L998,32 L1043,16 L1087,28 L1131,19 L1172,30 L1200,22 L1200,44 Z"/>
+</svg>
+
+
+<section class="tool" id="tool">
+  <div class="wrap">
+    <div class="tool-grid">
+
+      <!-- left: upload + crop -->
+      <div>
+        <div class="section-label">Шаг 1 · Изображение и кадр</div>
+
+        <div class="dropzone" id="dropzone">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 16V4m0 0l-4 4m4-4l4 4"/>
+            <path d="M4 15v3a2 2 0 002 2h12a2 2 0 002-2v-3"/>
+          </svg>
+          <div class="big">Перетащите изображение сюда</div>
+          <div class="small">PNG, JPG, GIF, WebP — любого размера. Можно также вставить картинку из буфера обмена (Ctrl+V).</div>
+          <div class="or">или</div>
+          <button class="btn-file" id="pickBtn" type="button">Выбрать файл</button>
+          <input type="file" id="fileInput" accept="image/*">
+        </div>
+
+        <div class="editor" id="editor">
+          <div class="stage" id="stage">
+            <canvas id="stageCanvas"></canvas>
+            <div class="split-line"></div>
+            <div class="split-tag ally">Альянс 8×12</div>
+            <div class="split-tag clan">Клан 16×12</div>
+          </div>
+          <div class="stage-hint">
+            <span>Тяните изображение, чтобы выбрать кадр</span>
+            <span>Колесо мыши — масштаб</span>
+          </div>
+          <div class="zoom-row">
+            <label for="zoomRange">Масштаб</label>
+            <input type="range" id="zoomRange" min="0" max="1000" value="0">
+            <button class="btn-ghost" id="fitBtn" type="button">Сбросить</button>
+          </div>
+          <div class="editor-actions">
+            <button class="btn-ghost" id="replaceBtn" type="button">Загрузить другое</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- right: mode + preview + export -->
+      <div>
+        <div class="section-label">Шаг 2 · Формат вывода</div>
+
+        <div class="mode-row" id="modeRow">
+          <label class="mode-card active" data-mode="clan">
+            <input type="radio" name="mode" value="clan" checked>
+            <span class="t">Только клан</span>
+            <span class="d">Один файл — значок клана 16×12 BMP</span>
+          </label>
+          <label class="mode-card" data-mode="combo">
+            <input type="radio" name="mode" value="combo">
+            <span class="t">Клан + альянс</span>
+            <span class="d">Два отдельных файла: альянс 8×12 и клан 16×12</span>
+          </label>
+        </div>
+
+        <div class="section-label">Шаг 3 · Предпросмотр</div>
+
+        <div id="previewEmpty" class="empty-note">
+          Загрузите изображение слева — здесь появится предпросмотр: как эмблема будет выглядеть рядом с ником в игре, в реальном размере и в увеличении.
+        </div>
+
+        <div id="previewArea" style="display:none">
+          <div class="preview-block">
+            <span class="plabel">В игре · рядом с ником</span>
+            <div class="ingame">
+              <div class="nametag">
+                <canvas id="igAlly" width="8" height="12" style="width:16px;height:24px"></canvas>
+                <canvas id="igClan" width="16" height="12" style="width:32px;height:24px"></canvas>
+                <span class="nick" id="nick" contenteditable="true" spellcheck="false">Aden</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="preview-block">
+            <span class="plabel">Реальный размер · 1:1</span>
+            <div class="truesize">
+              <div class="ts-item" id="tsAllyItem">
+                <canvas id="tsAlly" width="8" height="12"></canvas>
+                <span>альянс · 8×12</span>
+              </div>
+              <div class="ts-item">
+                <canvas id="tsClan" width="16" height="12"></canvas>
+                <span>клан · 16×12</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="preview-block zoomprev">
+            <span class="plabel">Увеличено ×16 · попиксельно</span>
+            <div class="row">
+              <canvas id="zmAlly" width="8" height="12" style="width:128px;height:192px"></canvas>
+              <canvas id="zmClan" width="16" height="12" style="width:256px;height:192px"></canvas>
+            </div>
+          </div>
+
+          <div class="download-area">
+            <button class="btn-main" id="downloadBtn" type="button">Скачать значок клана</button>
+            <div class="dl-status" id="dlStatus"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<svg class="torn flip" viewBox="0 0 1200 44" preserveAspectRatio="none" aria-hidden="true">
+  <path fill="#191715" d="M0,44 L0,26 L37,31 L74,18 L118,29 L163,14 L205,27 L249,20 L291,32 L338,16 L381,28 L424,12 L470,26 L512,19 L558,31 L601,15 L645,27 L690,21 L733,33 L778,17 L822,29 L866,13 L910,25 L954,20 L998,32 L1043,16 L1087,28 L1131,19 L1172,30 L1200,22 L1200,44 Z"/>
+</svg>
+<section class="guide" id="install">
+  <div class="wrap">
+    <div class="section-label">Справка</div>
+    <h2>Как установить эмблему в игре</h2>
+    <p class="sub">Клиент Lineage II принимает только файлы BMP 8 бит (256 цветов) строгого размера. Именно такие файлы вы и скачиваете здесь — конвертировать их больше не нужно.</p>
+    <div class="steps">
+      <div class="step">
+        <span class="num">01</span>
+        <h3>Сохраните файл</h3>
+        <p>Положите скачанный BMP в удобную папку, например <code>C:\crest\clan_16x12.bmp</code>. Имя файла — латиницей, без пробелов: так проще вводить путь в игре.</p>
+      </div>
+      <div class="step">
+        <span class="num">02</span>
+        <h3>Значок клана</h3>
+        <p>Войдите лидером клана (клан должен быть 3+ уровня). Откройте окно клана <code>Alt+N</code>, нажмите «Установить эмблему» / <code>Set Crest</code> и укажите путь к файлу <code>clan_16x12.bmp</code>.</p>
+      </div>
+      <div class="step">
+        <span class="num">03</span>
+        <h3>Значок альянса</h3>
+        <p>Лидер альянса вводит в чат команду <code>/allycrest</code> и в появившемся окне указывает путь к файлу <code>ally_8x12.bmp</code>. Значок альянса отображается слева от значка клана.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg class="torn" viewBox="0 0 1200 44" preserveAspectRatio="none" aria-hidden="true">
+  <path fill="#2A2520" d="M0,44 L0,26 L41,33 L86,17 L129,30 L172,15 L216,28 L259,21 L303,33 L347,18 L391,29 L435,13 L479,27 L522,20 L566,32 L610,16 L654,28 L697,22 L741,34 L785,18 L829,30 L873,14 L917,26 L960,21 L1004,33 L1048,17 L1092,29 L1136,20 L1176,31 L1200,23 L1200,44 Z"/>
+</svg>
+
+<section class="specs" id="specs">
+  <div class="wrap">
+    <div class="section-label">Формат</div>
+    <h2>Технические требования Lineage II</h2>
+    <table>
+      <thead>
+        <tr><th>Эмблема</th><th>Размер</th><th>Формат файла</th><th>Кто устанавливает</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Значок клана</td>
+          <td>16 × 12 пикселей</td>
+          <td>BMP, 8 бит, 256 цветов, без прозрачности</td>
+          <td>Лидер клана, клан 3+ уровня</td>
+        </tr>
+        <tr>
+          <td>Значок альянса</td>
+          <td>8 × 12 пикселей</td>
+          <td>BMP, 8 бит, 256 цветов, без прозрачности</td>
+          <td>Лидер альянса, команда /allycrest</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="tips">
+      <div class="tip">
+        <b>Почему игра отклоняет мой файл?</b>
+        <p>Самая частая причина — BMP в 24 битах: современные редакторы сохраняют так по умолчанию. Файлы из этой мастерской всегда 8-битные, с палитрой 256 цветов — клиент принимает их сразу.</p>
+      </div>
+      <div class="tip">
+        <b>Что лучше смотрится в 16×12?</b>
+        <p>Контрастные силуэты, гербы, руны и крупные буквы. Мелкие детали и фотографии с плавными переходами при таком размере сливаются — двигайте кадр и смотрите на предпросмотр в реальном размере.</p>
+      </div>
+      <div class="tip">
+        <b>Эмблема не появилась в игре?</b>
+        <p>Клиент кэширует изображения — сделайте logout/login или перезапустите игру. Если кнопка установки неактивна, проверьте уровень клана и права персонажа.</p>
+      </div>
+      <div class="tip">
+        <b>Работает на всех хрониках</b>
+        <p>Формат 16×12 и 8×12 одинаков от Interlude и High Five до Classic, Essence и Aden. На старых серверах C1–C3 значок клана мог быть 8×12 — уточните правила вашего сервера.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>L2 Crest Atelier — мастерская эмблем клана и альянса</span>
+    <span>Все вычисления выполняются в вашем браузере, изображения никуда не отправляются</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+
+</div>
+
+<div class="page" id="page-zenith" hidden>
+
+
+<header>
+  <div class="wrap">
+    <a class="wordmark" href="#">L2 Crest Atelier<small>Lineage II emblem workshop</small></a>
+    <nav>
+      <a href="#tool">Мастерская</a>
+      <a href="#install">Установка в игре</a>
+      <a href="#specs">Требования</a>
+      <a href="#zenith" class="nav-zenith">Zenith</a>
+    </nav>
+  </div>
+</header>
+
+<section class="z-hero">
+  <div class="wrap">
+    <svg class="z-crest" viewBox="0 0 120 132" fill="none" aria-hidden="true">
+      <!-- shield -->
+      <path d="M60 4 L112 22 V64 C112 96 92 116 60 128 C28 116 8 96 8 64 V22 Z"
+            fill="#2F3D29" stroke="#D9A441" stroke-width="3"/>
+      <path d="M60 14 L102 29 V64 C102 89 86 106 60 116 C34 106 18 89 18 64 V29 Z"
+            fill="#191715" stroke="rgba(217,164,65,.35)" stroke-width="1.5"/>
+      <!-- Z letter -->
+      <path d="M38 42 H82 L50 84 H84" stroke="#EEC25E" stroke-width="7"
+            stroke-linecap="square" stroke-linejoin="miter" fill="none"/>
+      <!-- star -->
+      <path d="M60 22 L62.2 27.8 L68 28.4 L63.6 32.2 L65 38 L60 34.8 L55 38 L56.4 32.2 L52 28.4 L57.8 27.8 Z"
+            fill="#D9A441"/>
+      <!-- base rays -->
+      <path d="M34 98 H86" stroke="rgba(238,194,94,.5)" stroke-width="2"/>
+      <path d="M42 104 H78" stroke="rgba(238,194,94,.3)" stroke-width="2"/>
+    </svg>
+    <h1><em>Zenith</em></h1>
+    <p class="z-sub">Клан на сервере <b>Cadmus</b></p>
+    <div class="z-rule"></div>
+  </div>
+</section>
+
+<svg class="torn" viewBox="0 0 1200 44" preserveAspectRatio="none" aria-hidden="true">
+  <path fill="#2A2520" d="M0,44 L0,26 L37,31 L74,18 L118,29 L163,14 L205,27 L249,20 L291,32 L338,16 L381,28 L424,12 L470,26 L512,19 L558,31 L601,15 L645,27 L690,21 L733,33 L778,17 L822,29 L866,13 L910,25 L954,20 L998,32 L1043,16 L1087,28 L1131,19 L1172,30 L1200,22 L1200,44 Z"/>
+</svg>
+
+<section class="z-about">
+  <div class="wrap">
+    <div class="z-about-grid">
+      <div>
+        <div class="section-label">О странице</div>
+        <h2>Этот сервис разработан кланом Zenith</h2>
+        <p>Мастерская эмблем создана игроками клана <b>Zenith</b> с сервера <b>Cadmus</b> — для всех, кто хочет видеть над головой своего персонажа настоящий герб, а не пустое место.</p>
+        <p>Мы сами через это проходили: игра отклоняет файлы, редакторы сохраняют не тот формат, а картинка в 16×12 расплывается. Поэтому собрали инструмент, который делает всё правильно с первого раза — и делимся им со всем сервером.</p>
+      </div>
+      <div>
+        <div class="section-label">Клан</div>
+        <div class="z-facts">
+          <div class="row"><span class="k">Название</span><span class="v gold">Zenith</span></div>
+          <div class="row"><span class="k">Сервер</span><span class="v">Cadmus</span></div>
+          <div class="row"><span class="k">Клан-лидер</span><span class="v gold">Xtrm</span></div>
+          <div class="row"><span class="k">Набор</span><span class="v">Открыт</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg class="torn flip" viewBox="0 0 1200 44" preserveAspectRatio="none" aria-hidden="true">
+  <path fill="#191715" d="M0,44 L0,26 L41,33 L86,17 L129,30 L172,15 L216,28 L259,21 L303,33 L347,18 L391,29 L435,13 L479,27 L522,20 L566,32 L610,16 L654,28 L697,22 L741,34 L785,18 L829,30 L873,14 L917,26 L960,21 L1004,33 L1048,17 L1092,29 L1136,20 L1176,31 L1200,23 L1200,44 Z"/>
+</svg>
+
+<section class="z-join">
+  <div class="wrap">
+    <div class="section-label" style="justify-content:center">Вступление</div>
+    <h2>Хочешь в Zenith?</h2>
+    <p class="lead">Набор в клан открыт. Чтобы вступить, зайдите в игру на сервере Cadmus и напишите в личные сообщения клан-лидеру.</p>
+    <div class="z-leader">
+      <span class="lbl">Клан-лидер</span>
+      <span class="nick">Xtrm</span>
+      <span class="how">Написать в игре: <code>/w Xtrm</code> или через поиск в списке друзей</span>
+    </div>
+    <p class="note">Если лидер не в сети — оставьте сообщение любому офицеру клана, вас перенаправят.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Zenith · сервер Cadmus</span>
+    <span><a href="#">← Вернуться в мастерскую эмблем</a></span>
+  </div>
+</footer>
+
+
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ================= state ================= */
+var S = {
+  img: null,        // Image
+  mode: 'clan',     // 'clan' | 'combo'
+  t: 0,             // zoom param 0..1
+  ox: 0, oy: 0,     // offset in css px
+  maxZoom: 12,
+  dragging: false,
+  lastX: 0, lastY: 0
+};
+
+var $ = function(id){ return document.getElementById(id); };
+var stage = $('stage'), stageCanvas = $('stageCanvas');
+var dropzone = $('dropzone'), editor = $('editor');
+var fileInput = $('fileInput');
+var zoomRange = $('zoomRange');
+var toastEl = $('toast');
+var toastTimer = null;
+
+function toast(msg){
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 3200);
+}
+
+/* ================= geometry ================= */
+function targetSize(){
+  return S.mode === 'clan' ? { w:16, h:12 } : { w:24, h:12 };
+}
+function viewW(){ return stage.clientWidth; }
+function viewH(){ return stage.clientHeight; }
+function coverScale(){
+  return Math.max(viewW()/S.img.width, viewH()/S.img.height);
+}
+function scale(){
+  return coverScale() * Math.pow(S.maxZoom, S.t);
+}
+function clampOffsets(){
+  var sc = scale();
+  var dw = S.img.width * sc, dh = S.img.height * sc;
+  var minX = viewW() - dw, minY = viewH() - dh;
+  S.ox = Math.min(0, Math.max(minX, S.ox));
+  S.oy = Math.min(0, Math.max(minY, S.oy));
+}
+function fit(){
+  S.t = 0;
+  zoomRange.value = 0;
+  var sc = coverScale();
+  S.ox = (viewW() - S.img.width*sc)/2;
+  S.oy = (viewH() - S.img.height*sc)/2;
+  clampOffsets();
+}
+
+/* ================= rendering ================= */
+function sizeStageCanvas(){
+  var dpr = window.devicePixelRatio || 1;
+  stageCanvas.width  = Math.round(viewW()*dpr);
+  stageCanvas.height = Math.round(viewH()*dpr);
+}
+function render(){
+  if(!S.img) return;
+  sizeStageCanvas();
+  var dpr = window.devicePixelRatio || 1;
+  var ctx = stageCanvas.getContext('2d');
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,viewW(),viewH());
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
+  var sc = scale();
+  ctx.drawImage(S.img, S.ox, S.oy, S.img.width*sc, S.img.height*sc);
+}
+
+/* source rect of the visible crop, in original image px */
+function sourceRect(){
+  var sc = scale();
+  return {
+    sx: -S.ox/sc,
+    sy: -S.oy/sc,
+    sw: viewW()/sc,
+    sh: viewH()/sc
+  };
+}
+
+/* draw the crop into an exact-size target canvas (16x12 or 24x12) */
+function makeTarget(){
+  var ts = targetSize();
+  var c = document.createElement('canvas');
+  c.width = ts.w; c.height = ts.h;
+  var ctx = c.getContext('2d');
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
+  var r = sourceRect();
+  ctx.drawImage(S.img, r.sx, r.sy, r.sw, r.sh, 0, 0, ts.w, ts.h);
+  return c;
+}
+
+/* split helpers: from a 24x12 combo canvas -> ally 8x12 + clan 16x12 */
+function subCanvas(src, x, w, h){
+  var c = document.createElement('canvas');
+  c.width = w; c.height = h;
+  c.getContext('2d').drawImage(src, x, 0, w, h, 0, 0, w, h);
+  return c;
+}
+
+function currentCrests(){
+  var ts = targetSize();
+  var full = makeTarget();
+  if(S.mode === 'clan'){
+    return { clan: full, ally: null };
+  }
+  return { clan: subCanvas(full, 8, 16, 12), ally: subCanvas(full, 0, 8, 12) };
+}
+
+/* ================= previews ================= */
+var igAlly=$('igAlly'), igClan=$('igClan'),
+    tsAlly=$('tsAlly'), tsClan=$('tsClan'),
+    zmAlly=$('zmAlly'), zmClan=$('zmClan'),
+    tsAllyItem=$('tsAllyItem');
+
+function blit(dst, src){
+  var ctx = dst.getContext('2d');
+  ctx.clearRect(0,0,dst.width,dst.height);
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(src, 0, 0);
+}
+
+var previewQueued = false;
+function schedulePreview(){
+  if(previewQueued) return;
+  previewQueued = true;
+  requestAnimationFrame(function(){
+    previewQueued = false;
+    updatePreviews();
+  });
+}
+
+function updatePreviews(){
+  if(!S.img) return;
+  var crests = currentCrests();
+  var combo = (S.mode === 'combo');
+
+  igAlly.style.display = combo ? 'block' : 'none';
+  tsAllyItem.style.display = combo ? 'flex' : 'none';
+  zmAlly.style.display = combo ? 'block' : 'none';
+
+  blit(igClan, crests.clan);
+  blit(tsClan, crests.clan);
+  blit(zmClan, crests.clan);
+  if(combo){
+    blit(igAlly, crests.ally);
+    blit(tsAlly, crests.ally);
+    blit(zmAlly, crests.ally);
+  }
+
+  $('downloadBtn').textContent = combo
+    ? 'Скачать оба значка (2 файла)'
+    : 'Скачать значок клана';
+}
+
+/* ================= BMP 8-bit encoder ================= */
+function encodeBMP8(canvas){
+  var w = canvas.width, h = canvas.height;
+  var ctx = canvas.getContext('2d');
+  var data = ctx.getImageData(0,0,w,h).data;
+
+  /* build palette from unique colors (pixel count <= 288, so <= 256 after merge safeguard) */
+  var palette = [];
+  var map = {};
+  var px = new Uint8Array(w*h);
+  var i, key, idx;
+  for(i = 0; i < w*h; i++){
+    var r = data[i*4], g = data[i*4+1], b = data[i*4+2];
+    key = (r<<16)|(g<<8)|b;
+    idx = map[key];
+    if(idx === undefined){
+      if(palette.length < 256){
+        idx = palette.length;
+        palette.push([r,g,b]);
+        map[key] = idx;
+      } else {
+        idx = nearestColor(r,g,b,palette);
+      }
+    }
+    px[i] = idx;
+  }
+  /* pad palette to 256 entries */
+  while(palette.length < 256) palette.push([0,0,0]);
+
+  var rowStride = Math.ceil(w/4)*4;
+  var imgSize = rowStride*h;
+  var offBits = 14 + 40 + 256*4;
+  var fileSize = offBits + imgSize;
+  var buf = new ArrayBuffer(fileSize);
+  var dv = new DataView(buf);
+
+  /* BITMAPFILEHEADER */
+  dv.setUint8(0, 0x42); dv.setUint8(1, 0x4D);        /* 'BM' */
+  dv.setUint32(2, fileSize, true);
+  dv.setUint32(6, 0, true);
+  dv.setUint32(10, offBits, true);
+
+  /* BITMAPINFOHEADER */
+  dv.setUint32(14, 40, true);
+  dv.setInt32(18, w, true);
+  dv.setInt32(22, h, true);                          /* bottom-up */
+  dv.setUint16(26, 1, true);
+  dv.setUint16(28, 8, true);                         /* 8 bpp */
+  dv.setUint32(30, 0, true);                         /* BI_RGB */
+  dv.setUint32(34, imgSize, true);
+  dv.setInt32(38, 2835, true);
+  dv.setInt32(42, 2835, true);
+  dv.setUint32(46, 256, true);
+  dv.setUint32(50, 0, true);
+
+  /* palette: B,G,R,0 */
+  var p = 54;
+  for(i = 0; i < 256; i++){
+    dv.setUint8(p,   palette[i][2]);
+    dv.setUint8(p+1, palette[i][1]);
+    dv.setUint8(p+2, palette[i][0]);
+    dv.setUint8(p+3, 0);
+    p += 4;
+  }
+
+  /* pixel rows, bottom-up, padded to 4 bytes */
+  var bytes = new Uint8Array(buf);
+  for(var row = 0; row < h; row++){
+    var srcRow = h - 1 - row;
+    var base = offBits + row*rowStride;
+    for(var col = 0; col < w; col++){
+      bytes[base + col] = px[srcRow*w + col];
+    }
+  }
+  return new Blob([buf], { type: 'image/bmp' });
+}
+
+function nearestColor(r,g,b,palette){
+  var best = 0, bestD = Infinity;
+  for(var i = 0; i < palette.length; i++){
+    var dr = r-palette[i][0], dg = g-palette[i][1], db = b-palette[i][2];
+    var d = dr*dr + dg*dg + db*db;
+    if(d < bestD){ bestD = d; best = i; }
+  }
+  return best;
+}
+
+/* ================= download ================= */
+function saveBlob(blob, name){
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function(){
+    URL.revokeObjectURL(a.href);
+    a.remove();
+  }, 5000);
+}
+
+$('downloadBtn').addEventListener('click', function(){
+  if(!S.img) return;
+  var crests = currentCrests();
+  if(S.mode === 'clan'){
+    saveBlob(encodeBMP8(crests.clan), 'clan_16x12.bmp');
+    $('dlStatus').innerHTML = 'Сохранён файл <b>clan_16x12.bmp</b> — 16×12, BMP 8 бит, 256 цветов.';
+    toast('Значок клана сохранён');
+  } else {
+    saveBlob(encodeBMP8(crests.clan), 'clan_16x12.bmp');
+    setTimeout(function(){
+      saveBlob(encodeBMP8(crests.ally), 'ally_8x12.bmp');
+    }, 400);
+    $('dlStatus').innerHTML = 'Сохранены два файла: <b>ally_8x12.bmp</b> и <b>clan_16x12.bmp</b>. Если браузер спросит — разрешите скачивание нескольких файлов.';
+    toast('Два файла сохранены: альянс и клан');
+  }
+});
+
+/* ================= mode switching ================= */
+var modeRow = $('modeRow');
+modeRow.addEventListener('click', function(e){
+  var card = e.target.closest('.mode-card');
+  if(!card) return;
+  var mode = card.getAttribute('data-mode');
+  if(mode === S.mode) return;
+  S.mode = mode;
+  card.querySelector('input').checked = true;
+  Array.prototype.forEach.call(modeRow.querySelectorAll('.mode-card'), function(c){
+    c.classList.toggle('active', c === card);
+  });
+  stage.classList.toggle('combo', mode === 'combo');
+  stage.style.setProperty('--ar', mode === 'clan' ? '16/12' : '24/12');
+  if(S.img){
+    /* keep current framing as well as possible: refit on aspect change */
+    requestAnimationFrame(function(){
+      fit();
+      render();
+      schedulePreview();
+    });
+  }
+});
+
+/* ================= pan / zoom ================= */
+stage.addEventListener('pointerdown', function(e){
+  if(!S.img) return;
+  S.dragging = true;
+  S.lastX = e.clientX; S.lastY = e.clientY;
+  stage.classList.add('dragging');
+  stage.setPointerCapture(e.pointerId);
+});
+stage.addEventListener('pointermove', function(e){
+  if(!S.dragging) return;
+  S.ox += e.clientX - S.lastX;
+  S.oy += e.clientY - S.lastY;
+  S.lastX = e.clientX; S.lastY = e.clientY;
+  clampOffsets();
+  render();
+  schedulePreview();
+});
+function endDrag(){
+  S.dragging = false;
+  stage.classList.remove('dragging');
+}
+stage.addEventListener('pointerup', endDrag);
+stage.addEventListener('pointercancel', endDrag);
+
+stage.addEventListener('wheel', function(e){
+  if(!S.img) return;
+  e.preventDefault();
+  var nt = S.t + (e.deltaY < 0 ? 0.06 : -0.06);
+  S.t = Math.min(1, Math.max(0, nt));
+  zoomRange.value = Math.round(S.t*1000);
+  clampOffsets();
+  render();
+  schedulePreview();
+}, { passive:false });
+
+zoomRange.addEventListener('input', function(){
+  S.t = zoomRange.value/1000;
+  clampOffsets();
+  render();
+  schedulePreview();
+});
+$('fitBtn').addEventListener('click', function(){
+  fit(); render(); schedulePreview();
+});
+$('replaceBtn').addEventListener('click', function(){ fileInput.click(); });
+
+window.addEventListener('resize', function(){
+  if(!S.img) return;
+  clampOffsets(); render();
+});
+
+/* ================= loading images ================= */
+function loadFile(file){
+  if(!file) return;
+  if(!/^image\//.test(file.type)){
+    toast('Это не изображение. Выберите PNG, JPG, GIF или WebP.');
+    return;
+  }
+  var url = URL.createObjectURL(file);
+  var img = new Image();
+  img.onload = function(){
+    if(S.img) URL.revokeObjectURL(S.img.src);
+    S.img = img;
+    dropzone.style.display = 'none';
+    editor.classList.add('on');
+    $('previewEmpty').style.display = 'none';
+    $('previewArea').style.display = 'block';
+    requestAnimationFrame(function(){
+      fit();
+      render();
+      schedulePreview();
+    });
+    toast('Изображение загружено — выберите кадр');
+  };
+  img.onerror = function(){
+    URL.revokeObjectURL(url);
+    toast('Не удалось прочитать файл. Попробуйте другой формат.');
+  };
+  img.src = url;
+}
+
+$('pickBtn').addEventListener('click', function(e){
+  e.stopPropagation();
+  fileInput.click();
+});
+dropzone.addEventListener('click', function(){ fileInput.click(); });
+fileInput.addEventListener('change', function(){
+  loadFile(fileInput.files[0]);
+  fileInput.value = '';
+});
+
+['dragover','dragenter'].forEach(function(ev){
+  dropzone.addEventListener(ev, function(e){
+    e.preventDefault();
+    dropzone.classList.add('over');
+  });
+});
+['dragleave','drop'].forEach(function(ev){
+  dropzone.addEventListener(ev, function(e){
+    e.preventDefault();
+    dropzone.classList.remove('over');
+  });
+});
+dropzone.addEventListener('drop', function(e){
+  var f = e.dataTransfer.files && e.dataTransfer.files[0];
+  loadFile(f);
+});
+/* allow dropping onto the stage too */
+stage.addEventListener('dragover', function(e){ e.preventDefault(); });
+stage.addEventListener('drop', function(e){
+  e.preventDefault();
+  var f = e.dataTransfer.files && e.dataTransfer.files[0];
+  if(f) loadFile(f);
+});
+
+/* paste from clipboard */
+window.addEventListener('paste', function(e){
+  var items = e.clipboardData && e.clipboardData.items;
+  if(!items) return;
+  for(var i = 0; i < items.length; i++){
+    if(items[i].type.indexOf('image') === 0){
+      loadFile(items[i].getAsFile());
+      break;
+    }
+  }
+});
+
+/* nickname: keep it one line */
+$('nick').addEventListener('keydown', function(e){
+  if(e.key === 'Enter'){ e.preventDefault(); this.blur(); }
+});
+
+})();
+</script>
+<script>
+(function(){
+"use strict";
+var main = document.getElementById('page-main');
+var zenith = document.getElementById('page-zenith');
+function route(){
+  var h = location.hash;
+  var isZen = (h === '#zenith');
+  main.hidden = isZen;
+  zenith.hidden = !isZen;
+  document.title = isZen
+    ? 'Zenith — клан на сервере Cadmus · L2 Crest Atelier'
+    : 'Мастерская эмблем Lineage II — значок клана и альянса';
+  if(isZen){
+    window.scrollTo(0,0);
+  } else if(h && h.length > 1){
+    var el = document.getElementById(h.slice(1));
+    if(el){ el.scrollIntoView(); }
+  }
+}
+window.addEventListener('hashchange', route);
+route();
+})();
+</script>
+</body>
+</html>
